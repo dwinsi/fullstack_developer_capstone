@@ -101,10 +101,12 @@ DATABASES = {
     }
 }
 
+path1 = 'django.contrib.auth.password_validation.'
+path2 = 'UserAttributeSimilarityValidator'
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME':
-        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        path1 + path2,
     },
     {
         'NAME':
