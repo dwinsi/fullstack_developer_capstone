@@ -28,12 +28,17 @@ SECRET_KEY =\
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+first = "ashwinikum11-8000.theianext-1-labs-"
+second = "prod-misc-tools-us-east-0.proxy.cognitiveclass.ai"
+
+URL = "https://" + first + second
+
 ALLOWED_HOSTS = [
     'localhost',
-    'https://ashwinikum11-8000.theianext-1-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai'
+    URL
 ]
 CSRF_TRUSTED_ORIGINS = [
-    'https://ashwinikum11-8000.theianext-1-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai'
+    URL
 ]
 
 REST_FRAMEWORK = {

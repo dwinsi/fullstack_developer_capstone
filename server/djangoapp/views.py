@@ -106,7 +106,7 @@ def get_dealer_reviews(request, dealer_id):
         return JsonResponse({"status": 400, "message": "Bad Request"})
 
 
-def get_dealer_details(request, dealer_id): 
+def get_dealer_details(request, dealer_id):
     if (dealer_id):
         endpoint = "/fetchDealer/" + str(dealer_id)
         dealership = get_request(endpoint)
@@ -121,14 +121,19 @@ def add_review(request):
         data = json.loads(request.body)
         try:
             response = post_review(data)
-            return JsonResponse({"status":200})
-        except:
-            return JsonResponse({"status": 401, "message": "Error in posting review"})
+            return JsonResponse({"status":200, "message": response})
+        except response.DoesNotExist:
+            return JsonResponse(
+                {
+                    "status": 401,
+                    "message": "Error in posting review"
+                }
+            )
     else:
         return JsonResponse({"status": 403, "message": "Unauthorized"})
 
 
-def get_cars(request): 
+def get_cars(request):
     count = CarMake.objects.filter().count()
     print(count)
     if (count == 0):
@@ -142,4 +147,4 @@ def get_cars(request):
                 "CarMake": car_model.car_make.name
             }
         )
-    return JsonResponse({"CarModels":cars})
+    return JsonResponse({"CarModels": cars})
